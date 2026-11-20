@@ -1,34 +1,25 @@
-[![progress-banner](https://backend.codecrafters.io/progress/shell/4aa53a5b-6e10-4d69-9696-d8a3515d662c)](https://app.codecrafters.io/users/Stationarios?r=2qF)
-
-This is a starting point for Python solutions to the
-["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
-
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+This repo is based on the "build your own shell" challenge from CodeCrafters. This repo is mainly written in Python.
 
 **Note**: If you're viewing this repo on GitHub, head over to
 [codecrafters.io](https://codecrafters.io) to try the challenge.
 
-# Passing the first stage
+# how to run this
+clone this repo. just `bash your_program.sh` or `./your_program.sh` and it'll be up and running.
 
-The entry point for your `shell` implementation is in `app/main.py`. Study and
-uncomment the relevant code, then run the command below to execute the tests on
-our servers:
+# what has been done
+- stage 1: usable commands include: `exit`, `echo` and `type`. Executables can also be run.
+- stage 2: `pwd` and `cd` are added.  
+- a basic script for automated testing is created based on pytest.
 
-```sh
-codecrafters submit
-```
-
-Time to move on to the next stage!
-
-# Stage 2 & beyond
-
-Note: This section is for stages 2 and beyond.
-
-1. Ensure you have `uv` installed locally
-1. Run `./your_program.sh` to run your program, which is implemented in
-   `app/main.py`.
-1. Run `codecrafters submit` to submit your solution to CodeCrafters. Test
-   output will be streamed to your terminal.
+# what's next
+- quoting
+- redirection
+- command completion
+- filename completion
+- programmable completion
+- background jobs
+- pipelines
+- history
+- history persistence
+- parameter expansion
+- more DIY stuff I'm considering...
