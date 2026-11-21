@@ -4,7 +4,7 @@ This repo is based on the "build your own shell" challenge from CodeCrafters. Th
 [codecrafters.io](https://codecrafters.io) to try the challenge.
 
 # how to run this
-clone this repo. just `bash your_program.sh` or `./your_program.sh` and it'll be up and running.
+Clone this repo. Just `bash your_program.sh` or `./your_program.sh` and it'll be up and running.
 
 # what has been done
 - stage 1: usable commands include: `exit`, `echo` and `type`. Executables can also be run.

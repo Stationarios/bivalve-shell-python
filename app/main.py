@@ -1,6 +1,7 @@
 import sys
 import os
 import subprocess
+from app.lexer import lex_command
 
 BUILTINS = {"echo", "exit", "type", "pwd", "cd"}
 
@@ -59,9 +60,9 @@ def main():
         except EOFError:
             break
 
-        parts = command.split()
+        parts = lex_command(command)
         if not parts:
-            pass
+            continue
         name = parts[0]
         args = parts[1:]
 

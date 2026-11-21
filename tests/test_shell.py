@@ -1,18 +1,24 @@
 import subprocess
 import sys
+import os
 from pathlib import Path
 import pytest
 
 SHELL = Path(__file__).resolve().parents[1] / "app" / "main.py"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-def run_shell(commands: str, cwd = None):
+def run_shell(commands: str, cwd=None):
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(PROJECT_ROOT)
+
     return subprocess.run(
-        [sys.executable, str(SHELL)],
-        input = commands + "\nexit\n",
-        text = True,
-        capture_output = True,
-        timeout = 5,
-        cwd = cwd,
+        [sys.executable, "-m", "app.main"],
+        input=commands + "\nexit\n",
+        text=True,
+        capture_output=True,
+        timeout=5,
+        cwd=cwd if cwd is not None else PROJECT_ROOT,
+        env=env,
     )
 
 # test echo
@@ -56,3 +62,4 @@ def test_type(command, expected):
 def test_exit():
     result = run_shell("exit")
     assert result.returncode == 0
+    # print(result.stderr)
