@@ -11,13 +11,20 @@ def lex_command(command: str) -> list[str]:
     i = 0
     while i < len(command):
         c = command[i]
-        if c == "\\" and quote == None:
-            if i + 1 >= len(command):
-                print("bivalve: isolated backslash at the end")
-                return []
-            token_started = True
-            current.append(command[i + 1])
-            i += 1
+        if c == "\\":
+            if quote == None or (
+                quote == '"' and i + 1 < len(command)
+                and command[i + 1] in '$`"\\'
+            ):
+                if i + 1 >= len(command):
+                    print("bivalve: isolated backslash at the end")
+                    return []
+                token_started = True
+                current.append(command[i + 1])
+                i += 1
+            else:
+                current.append(c)
+                token_started = True
         elif c in ("'", '"'):
             if quote is None:
                 quote = c
@@ -36,7 +43,7 @@ def lex_command(command: str) -> list[str]:
         else:
             current.append(c)
             token_started = True
-            
+
         i += 1
 
     if quote is not None:

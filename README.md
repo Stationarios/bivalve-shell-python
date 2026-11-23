@@ -14,6 +14,7 @@ Use `uv run python -m pytest` to run all the tests. Use `uv run python -m pytest
 # what has been done
 - Stage 1: Usable commands include: `exit`, `echo` and `type`. Executables can also be run.
 - Stage 2: `pwd` and `cd` are added. Can change directory.
+- Stage 3: Working on quoting. Single and double quotes are added. Backslashes are (partly) working. Not all special characters are dealt with yet.
 - A basic script for automated testing is created based on pytest.
 
 # what's next
