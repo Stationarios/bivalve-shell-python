@@ -1,3 +1,6 @@
+"""
+tests shell output for various commands
+"""
 import subprocess
 import sys
 import os
@@ -38,25 +41,30 @@ def test_echo(command, expected):
 
 # test type
 @pytest.mark.parametrize(
-    "command, expected",
+    "command, expected_stdout, expected_stderr",
     [
-        pytest.param("type echo", "echo is a shell builtin", id="builtin"),
-        pytest.param("type sdfsvfgr", "sdfsvfgr: not found", id="non-existent"),
-        pytest.param("type ls", "ls is /usr/bin/ls", id="executable"),
+        pytest.param("type echo", "echo is a shell builtin", "", id="builtin"),
+        pytest.param("type sdfsvfgr", "", "sdfsvfgr: not found", id="non-existent"),
+        pytest.param("type ls", "ls is /usr/bin/ls", "", id="executable"),
         pytest.param(
             "type grep afdds type vfg",
-            ("grep is /usr/bin/grep\n"
-            "afdds: not found\n"
-            "type is a shell builtin\n"
-            "vfg: not found"),
+            (
+                "grep is /usr/bin/grep\n"
+                "type is a shell builtin\n"
+            ),
+            (
+                "afdds: not found\n"
+                "vfg: not found\n"
+            ),
             id="multiple-types"
             ),
     ],
 )
 
-def test_type(command, expected):
+def test_type(command, expected_stdout, expected_stderr):
     result = run_shell(command)
-    assert expected in result.stdout
+    assert expected_stdout in result.stdout
+    assert expected_stderr in result.stderr
 
 # test exit
 def test_exit():
