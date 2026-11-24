@@ -81,18 +81,22 @@ def main():
                 continue
         
         # commands
-        if name == "exit":
-            break
-        elif name == "echo":
-            handle_echo(args, out)
-        elif name == "type":
-            handle_type(args, out)
-        elif name == "pwd":
-            handle_pwd(out)
-        elif name == "cd":
-            handle_cd(args)
-        else:
-            run_executable(name, args, out)
+        try:
+            if name == "exit":
+                break
+            elif name == "echo":
+                handle_echo(args, out)
+            elif name == "type":
+                handle_type(args, out)
+            elif name == "pwd":
+                handle_pwd(out)
+            elif name == "cd":
+                handle_cd(args)
+            else:
+                run_executable(name, args, out)
+        finally:
+            if out is not None:
+                out.close()
 
 if __name__ == "__main__":
     main()
